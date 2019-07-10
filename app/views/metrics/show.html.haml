@@ -1,0 +1,18 @@
+- metaData = @hoopla_client.get(@metric.links.first.href, @metric.links.first.rel)
+%table
+  %thead
+    %tr
+      %td Metric Name
+      %td User
+      %td Metric Value
+  %tbody
+    - metaData.each do |d|
+      - user = JSON.parse(@hoopla_client.get(d['owner']['href'], {}).to_json, object_class: OpenStruct)
+      %tr
+        %td= @metric.name
+        %td
+          - if user.blank?
+            ""
+          - else
+            = link_to "#{user.first_name} #{user.last_name}", "/users/#{user.href.split("/users")[1]}"
+        %td= d['value']

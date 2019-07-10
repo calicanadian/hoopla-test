@@ -1,0 +1,11 @@
+
+%table
+  %thead
+    %tr
+      %td Metric Name
+  %tbody
+    - @metrics.each do |metric|
+      %tr
+        %td= link_to metric.name, "/metrics/#{metric.href.split('metrics/')[1]}"
+
+= paginate @metrics
