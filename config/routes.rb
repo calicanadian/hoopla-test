@@ -4,5 +4,6 @@ Rails.application.routes.draw do
 
   resources :metrics, only: [:index]
   get "metrics/:metric_id", to: 'metrics#show'
-  get "users/:user_id", to: 'users#edit'
+  get "users/:user_id/:metric_id/:value_id", to: 'users#edit'
+  patch "users/:user_id/update", to: 'users#update'
 end

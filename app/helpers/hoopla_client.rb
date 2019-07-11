@@ -19,7 +19,34 @@ class HooplaClient
     if response.status == 200
       JSON.parse(response.body)
     else
-      raise StandardError('Invalid response from ')
+      raise StandardError('Invalid response from GET')
+    end
+  end
+
+  def post(relative_url, options)
+    response = client.post(relative_url, headers: options)
+    if response.status == 200
+      JSON.parse(response.body)
+    else
+      raise StandardError('Invalid response from POST')
+    end
+  end
+
+  def put(relative_url, options)
+    response = client.put(relative_url, headers: options)
+    if response.status == 200
+      JSON.parse(response.body)
+    else
+      raise StandardError('Invalid response from PATCH')
+    end
+  end
+
+  def delete(relative_url, options)
+    response = client.delete(relative_url, headers: options)
+    if response.status == 204
+      JSON.parse(response.body)
+    else
+      raise StandardError('Invalid response from DELETE')
     end
   end
 

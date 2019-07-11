@@ -1,11 +1,20 @@
-%table
-  %thead
-    %tr
-      %td First Name
-      %td Last Name
-      %td Email Address
-  %tbody
-    %tr
-      %td= @user['first_name']
-      %td= @user['last_name']
-      %td= @user['email']
+= form_tag("/users/#{@userId}/update", method: :patch) do
+  %table
+    %thead
+      %tr
+        %td First Name
+        %td Last Name
+        %td Email Address
+        %td Metric Value
+        %td
+    %tbody
+      %tr
+        %td= text_field_tag 'first_name', @user.first_name
+        %td= text_field_tag 'last_name', @user.last_name
+        %td= email_field_tag 'email', @user.email
+        %td= text_field_tag 'metric_value', @metricValue.value
+        = hidden_field_tag 'metric_value_link', @metricValue.href
+        = hidden_field_tag 'user_id', @userId
+        = hidden_field_tag 'metric_id', @metricId
+        = hidden_field_tag 'metric_value_id', @valueId
+        %td= submit_tag 'Update'
